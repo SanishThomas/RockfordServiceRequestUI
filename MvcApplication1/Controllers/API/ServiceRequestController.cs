@@ -26,6 +26,7 @@ namespace MvcApplication1.Controllers.API
         {
             HttpResponseMessage response = new HttpResponseMessage();
             problemData.ID = Guid.NewGuid();
+            problemData.CreatedDate = DateTime.Now;
             using (var dbContext = new ProblemDataContext())
             {
                 dbContext.ProblemDatas.Add(problemData);               

@@ -18,12 +18,13 @@ namespace ServiceData.Models
     {
         [Key]
         public Guid ID { get; set; }
-        public string UserID { get; set; }
         public decimal Latitude { get; set; }
         public string Longitude { get; set; }
         public string Description { get; set; }
         public string Severity { get; set; }
-        public string Type { get; set; }
+        public string ServiceType { get; set; }
         public string ImageUrl { get; set; }
+        public string VideoUrl { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }
