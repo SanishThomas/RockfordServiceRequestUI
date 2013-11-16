@@ -3,18 +3,30 @@
 @{
     ViewBag.Title = "Setup Google Calendar";
 }
-<html>
+<!DOCTYPE html>
+<html lang="en" ng-app>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Geocoding service</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <title>Raise Up Rockford</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
     <style>
-      html, body, #map-canvas {
+      #map-canvas {
         width: 800px;
         height: 600px;
       }
     </style>
-    <script src="Scripts/angular.js"></script>
     <script src="Scripts/jquery-1.8.2.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
@@ -198,30 +210,65 @@
         }
 
     </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
   </head>
   <body>
-    <div>
-        <div id="panel">
-            <label for="address">Address</label>
-            <input id="address" type="textbox" value="" style="width: 300px">
-            <input type="button" value="Go" onclick="codeAddress()">
-            <input type="button" value="Populate All Data" onclick="populateData()">
-            <input type="button" value="Clear Map" onclick="deleteMarkers()">
+    <div class="container">
 
-            <input type="button" value="Populate Service Data" onclick="populateServiceData()">
-            <fieldset>
-                <legend>Filter</legend>
-                <label for="probcode">Problem Code</label>
-                <select id="probcode" onchange="populateData()">
-                    <option value="ALL" selected>ALL</option>
-                </select>  <br />
-                <label for="severity">Severity</label>
-                <select id="severity" onchange="populateServiceData()">
-                    <option value="ALL" selected>ALL</option>
-                </select> 
-            </fieldset>
-        </div><br />
-        <div id="map-canvas"></div>
+      <!-- Static navbar -->
+      <div class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Raise Up Rockford</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">View Service Requests</a></li>
+            <li><a href="#">Submit Service Request</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+
+      <div class="row">
+          <div class="col-xs-4 col-sm-3 col-md-2" ng-controller="ListCtrl">
+              <p>List of stuff</p>
+              <ul>
+                <li ng-repeat="li in listitems">
+                    <a href="#" ng-click"clickListItem($index)">{{li.Name}}</a>
+                </li>
+              </ul>
+          </div>
+          <div class="col-xs-8 col-sm-9 col-md-10">
+            <div id="panel">
+                <label for="address">Address</label>
+                <input id="address" type="textbox" value="" style="width: 300px">
+                <input type="button" value="Go" onclick="codeAddress()">
+                <input type="button" value="Populate All Data" onclick="populateData()">
+                <input type="button" value="Clear Map" onclick="deleteMarkers()">
+
+                <input type="button" value="Populate Service Data" onclick="populateServiceData()">
+                <fieldset>
+                    <legend>Filter</legend>
+                    <label for="probcode">Problem Code</label>
+                    <select id="probcode" onchange="populateData()">
+                        <option value="ALL" selected>ALL</option>
+                    </select>  <br />
+                    <label for="severity">Severity</label>
+                    <select id="severity" onchange="populateServiceData()">
+                        <option value="ALL" selected>ALL</option>
+                    </select> 
+                </fieldset>
+            </div>
+            <div id="map-canvas"></div>
+          </div>
+      </div>
     </div>
+      
+      <script src="/Content/js/controllers.js"></script>
   </body>
 </html>
